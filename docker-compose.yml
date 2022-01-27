@@ -1,0 +1,91 @@
+version: '3'
+services:
+  mariadb:
+    image: 'wodby/mariadb:10.5'
+    environment:
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+    hostname: mariadb
+    volumes:
+      - /var/lib/mysql
+    networks:
+      dockerpn:
+        ipv4_address: '${NETWORK}.10'
+  nginx:
+    image: wodby/nginx:1.19-5.13.5
+    depends_on:
+      - php
+    ports:
+      - 8085:80
+    environment:
+      NGINX_STATIC_OPEN_FILE_CACHE: "off"
+      NGINX_ERROR_LOG_LEVEL: debug
+      NGINX_BACKEND_HOST: php
+      NGINX_SERVER_ROOT: /var/www/html/web
+      NGINX_VHOST_PRESET: drupal8
+      #NGINX_DRUPAL_FILE_PROXY_URL: http://example.com
+    volumes:
+      - ./:/var/www/html:cached
+    labels:
+      - 'traefik.backend=${COMPOSE_PROJECT_NAME}'
+      - 'traefik.frontend.rule=Host:$WEB_SERVER_DOMAIN_NAME'
+      - traefik.enable=true
+      - traefik.default.protocol=http
+      - 'traefik.frontend.entryPoints=http,https'
+      - traefik.frontend.redirect.entryPoint=https
+      - traefik.docker.network=shared
+      - traefik.port=80
+    networks:
+      dockerpn:
+        ipv4_address: '${NETWORK}.85'
+      shared: null
+    tty: true
+  solr:
+    image: 'wodby/solr:8.7'
+    environment:
+      SOLR_DEFAULT_CONFIG_SET: search_api_solr_4.1.6
+      SOLR_HEAP: 1024m
+    labels:
+      - traefik.backend=intrado_solr
+      - traefik.port=8983
+      - 'traefik.frontend.rule=Host:solr.$WEB_SERVER_DOMAIN_NAME'
+    networks:
+      dockerpn:
+        ipv4_address: '${NETWORK}.90'
+      shared: null
+  php:
+    image: 'ashumenko/php:7.3'
+    environment:
+      PHP_SENDMAIL_PATH: '/usr/sbin/sendmail -t -i -S mailhog:1025'
+      DB_HOST: $MYSQL_HOSTNAME
+      DB_USER: $MYSQL_USER
+      DB_PASSWORD: $MYSQL_PASSWORD
+      DB_NAME: $MYSQL_DATABASE
+      DB_DRIVER: mysql
+      PHP_FPM_USER: wodby
+      PHP_FPM_GROUP: wodby
+      GIT_USER_EMAIL: $GIT_USER_EMAIL
+      GIT_USER_NAME: $GIT_USER_NAME
+      TERMINAL_TITLE: $COMPOSE_PROJECT_NAME
+#      PHP_XDEBUG: 1
+#      PHP_XDEBUG_MODE: debug
+#      PHP_XDEBUG_IDEKEY: "PHPSTORM"
+#      PHP_XDEBUG_CLIENT_HOST: '${NETWORK}.1'
+    volumes:
+      - './:/var/www/html'
+      - '~/.ssh:/home/wodby/.ssh'
+    networks:
+      dockerpn:
+        ipv4_address: '${NETWORK}.83'
+      shared: null
+networks:
+  dockerpn:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: '${NETWORK}.0/24'
+  shared:
+    external:
+      name: shared
