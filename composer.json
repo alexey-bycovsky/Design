@@ -58,17 +58,6 @@
         "files": ["load.environment.php"]
     },
     "extra": {
-        "patches": {
-            "drupal/page_manager": {
-                "Remove region wrapper from render array" : "./patches/page-manager-remove-region-wrapper.patch"
-            },
-            "drupal/facets": {
-                "AJAX not working in most of situations": "https://www.drupal.org/files/issues/2021-03-04/facets-ajax-3052574-108.patch"
-            },
-            "drupal/sharethis": {
-                "Error calling the method ViewsRenderPipelineMarkup": "https://www.drupal.org/files/issues/2021-08-18/sharethis-undefined-method-3220714-3.patch"
-            }
-        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"
