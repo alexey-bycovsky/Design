@@ -1,0 +1,13 @@
+uuid: fed5067d-9ab1-4979-80cf-ba97482f2a35
+langcode: pl
+status: true
+dependencies:
+  module:
+    - comment
+_core:
+  default_config_hash: tWOIjSMobEWOFZddMkNqb9JySbOVwE1diC6NRqcfLTk
+id: comment_unpublish_action
+label: 'Wstrzymaj publikację komentarzy'
+type: comment
+plugin: 'entity:unpublish_action:comment'
+configuration: {  }

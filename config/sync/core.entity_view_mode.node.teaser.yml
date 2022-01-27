@@ -1,0 +1,12 @@
+uuid: cc914bb4-fd3e-489e-a5cb-8302414999c9
+langcode: pl
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: Mz9qWr1kUYK0mjRAGDsr5XS6PvtZ24en_7ndt-pyWe4
+id: node.teaser
+label: Skrót
+targetEntityType: node
+cache: true

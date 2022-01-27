@@ -1,0 +1,10 @@
+uuid: f5f806b1-a869-41de-ba32-857bda9ad26e
+langcode: pl
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: zglzjmYxi0G0ag9MZ02y0LSJOdpWRwJxyP_OvFojFyo
+id: basic
+label: 'Prosty blok'
+revision: 0
+description: 'Prosty blok zawiera tytuł i treść'

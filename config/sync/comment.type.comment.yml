@@ -1,0 +1,10 @@
+uuid: 7ef4281e-b2d0-49b9-b04d-efd3afc97466
+langcode: pl
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: bqZsN31T2n0UjcbyCpOPi9D2iO0sAOHR7FnEs9qMvaA
+id: comment
+label: 'Domyśle komentarze'
+target_entity_type_id: node
+description: 'Pozwala komentować zawartość'

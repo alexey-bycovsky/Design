@@ -1,0 +1,22 @@
+uuid: aff32bf7-624d-4319-9481-71123fd4b97a
+langcode: pl
+status: true
+dependencies:
+  theme:
+    - bartik
+_core:
+  default_config_hash: Qf2BoIzd9py5AYXZj8fJzCYDyVk1-AWXcu-AqQeDZKA
+id: bartik_local_tasks
+theme: bartik
+region: content
+weight: -40
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Zakładki
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

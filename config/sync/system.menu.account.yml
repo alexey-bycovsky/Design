@@ -1,0 +1,10 @@
+uuid: 5f5fb56f-b4c8-48b9-94bb-dd6182cc4163
+langcode: pl
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: M_Bh81osDyUQ4wV0GgU_NdBNqkzM87sLxjaCdFj9mnw
+id: account
+label: 'Menu konta użytkownika'
+description: 'Odnośniki związane z aktywnym kontem użytkownika'
+locked: true

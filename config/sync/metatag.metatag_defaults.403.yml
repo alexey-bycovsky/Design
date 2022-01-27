@@ -1,0 +1,12 @@
+uuid: 8b2290b9-2a65-4a17-b004-50cb3e597202
+langcode: pl
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: RDCkFL0NDt75Gwioooxo1iuA1S50xTVsBOgX__c6wTw
+id: '403'
+label: '403 dostęp zabroniony'
+tags:
+  robots: noindex
+  canonical_url: '[site:url]'
+  shortlink: '[site:url]'
